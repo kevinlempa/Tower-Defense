@@ -4,7 +4,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class grid : MonoBehaviour {
-   private void Start() {
-      throw new NotImplementedException();
-   }
+   private int lol;
 }
