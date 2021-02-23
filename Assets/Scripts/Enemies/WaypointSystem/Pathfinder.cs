@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Editor;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,21 +8,17 @@ public class Pathfinder : MonoBehaviour {
 
     NavMeshAgent _agent;
     Queue<Vector3> testQueue = new Queue<Vector3>();
-
-    float _movementSpeed;
+    public GameObject waypoints;
+    
     
     void Awake() {
         _agent = GetComponent<NavMeshAgent>();
-        
-        testQueue.Enqueue(new Vector3(0, 0, 5));
-        testQueue.Enqueue(new Vector3(5, 0, 0));
-        testQueue.Enqueue(new Vector3(0, 0, 0));
-        testQueue.Enqueue(new Vector3(5, 0, 5));
-        
-        //LATER: fetch movement speed from EnemyType here
-        //
-        //
-        //
+
+        foreach (var point in waypoints.GetComponent<Waypoints>().points) {
+            testQueue.Enqueue(point);
+        }
+
+        //_agent.speed = GetComponent<EnemyType>().speed;
     }
 
     void Update() {
