@@ -13,9 +13,9 @@ namespace Enemies
         public MeshRenderer meshRenderer;
         public Image healthBar;
         void Start() {
-            this._attack = type.attack;
-            this._health = type.health;
-            this._speed = type.speed;
+            _attack = type.attack;
+            _health = type.health;
+            _speed = type.speed;
         }
 
         void Update() {
@@ -23,9 +23,9 @@ namespace Enemies
         }
 
         public void TakeDamage() {
-            this._health -= 10f;
-            healthBar.fillAmount = this._health / type.health;
-            if (this._health <= 0) Destroy(this.gameObject);
+            _health -= 10f;
+            healthBar.fillAmount = _health / type.health;
+            if (_health <= 0) Destroy(this.gameObject);
         }
 
     }
