@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gold : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int totalGold;
+    private float timeSeconds = 1;
+
+    public delegate void OnGemBought(Gems gems);
+
+    public OnGemBought onGemBought;
+
+    public int TotalGold
+    {
+        get => totalGold; 
+        set => totalGold = value;
+    }
+    IEnumerator PassiveIncome()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeSeconds);
+            totalGold++;
+        } 
+    }
+    
+ 
     void Start()
     {
-        
+        StartCoroutine(PassiveIncome());
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(totalGold);
     }
 }
