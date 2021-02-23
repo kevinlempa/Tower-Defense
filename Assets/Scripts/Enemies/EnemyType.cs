@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace ScriptableObjects
+namespace Enemies
 {
-    [CreateAssetMenu(fileName = "New Type")]
+    [CreateAssetMenu]
     public class EnemyType : ScriptableObject
     {
         public new string name;
@@ -10,9 +10,7 @@ namespace ScriptableObjects
         public float health;
         public float speed;
       
-        public MeshRenderer meshRenderer;
+       
         public MeshFilter meshFilter;
-
-
     }
 }
