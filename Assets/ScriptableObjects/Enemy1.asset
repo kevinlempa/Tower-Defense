@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e022ec4511f7bba42b1c4da7253b81de, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  name: 
-  attack: 0
-  speed: 0
-  health: 0
-  meshRenderer: {fileID: 0}
-  meshFilter: {fileID: 0}
+  name: one
+  attack: 20
+  health: 100
+  speed: 6
+  meshFilter: {fileID: 8376446933229598516, guid: bcf253baedf8f68429b9c7dfc50a855c, type: 3}

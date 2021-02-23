@@ -1,37 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+namespace Enemies
 {
-    public EnemyType type;
-    private int attack;
-    private float health;
-    private float speed;
-
-    public Image healthBar;
-    void Start()
+    public class Enemy : MonoBehaviour
     {
-        this.attack = type.attack;
-        this.health = type.health;
-        this.speed = type.speed;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            TakeDamage();
-        }
-    }
+        public EnemyType type;
+        private int _attack;
+        private float _health;
+        private float _speed;
     
-    public void TakeDamage()
-    {
-        this.health -= 5f;
-        healthBar.fillAmount = this.health / type.health;
-        if (this.health <= 0) {Destroy(this.gameObject);}
-    }
+        public MeshRenderer meshRenderer;
+        public Image healthBar;
+        void Start() {
+            this._attack = type.attack;
+            this._health = type.health;
+            this._speed = type.speed;
+        }
 
+        void Update() {
+            if (Input.GetKeyDown("space")) TakeDamage();
+        }
+
+        public void TakeDamage() {
+            this._health -= 10f;
+            healthBar.fillAmount = this._health / type.health;
+            if (this._health <= 0) Destroy(this.gameObject);
+        }
+
+    }
 }
