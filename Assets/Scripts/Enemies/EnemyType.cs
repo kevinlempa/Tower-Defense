@@ -7,7 +7,7 @@ namespace ScriptableObjects
     {
         public new string name;
         public int attack;
-        public int health;
+        public float health;
         public float speed;
       
         public MeshRenderer meshRenderer;
