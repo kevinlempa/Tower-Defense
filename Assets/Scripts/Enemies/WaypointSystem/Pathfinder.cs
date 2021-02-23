@@ -6,14 +6,14 @@ namespace Enemies.WaypointSystem {
     public class Pathfinder : MonoBehaviour {
 
         NavMeshAgent _agent;
-        Queue<Vector3> testQueue = new Queue<Vector3>();
+        Queue<Vector3> _points = new Queue<Vector3>();
         public GameObject waypoints;
         
         void Awake() {
             _agent = GetComponent<NavMeshAgent>();
 
             foreach (var point in waypoints.GetComponent<Waypoints>().points) {
-                testQueue.Enqueue(point);
+                _points.Enqueue(point);
             }
             
             //Fetch enemy speed from EnemyType : SO
@@ -22,7 +22,7 @@ namespace Enemies.WaypointSystem {
         }
 
         void Update() {
-            Move(testQueue);
+            Move(_points);
         }
 
         public void Move(Queue<Vector3> paths) {
