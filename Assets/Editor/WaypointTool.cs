@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Enemies.WaypointSystem;
+using UnityEditor;
 using UnityEngine;
 
 namespace Editor {
