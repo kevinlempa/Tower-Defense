@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace Enemies {
-    public class Drone : MonoBehaviour {
+    public class Enemy : MonoBehaviour {
 
         public int  maxMovementSpeed, accelerationSpeed, attack;
         public float health;

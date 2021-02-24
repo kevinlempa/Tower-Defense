@@ -11,9 +11,9 @@ namespace Enemies
 
         void Awake() {
             //TODO: FIX SPIDER HERE
-            if (GetComponent<Drone>() != null) {
-                _health = GetComponent<Drone>().health;
-                _maxHealth = GetComponent<Drone>().maxHealth;
+            if (GetComponent<Enemy>() != null) {
+                _health = GetComponent<Enemy>().health;
+                _maxHealth = GetComponent<Enemy>().maxHealth;
             }
             else {
                 //_health = GetComponent<Spider>().health;
