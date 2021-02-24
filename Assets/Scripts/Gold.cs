@@ -8,10 +8,12 @@ public class Gold : MonoBehaviour
 {
     private int totalGold;
     private float timeSeconds = 1;
+    public Gems gems;
+    
+    //public delegate int OnGemBought(Gems totalGems);
 
-    public delegate void OnGemBought(Gems gems);
-
-    public OnGemBought onGemBought;
+    
+   
 
     public int TotalGold
     {
@@ -23,8 +25,26 @@ public class Gold : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timeSeconds);
-            totalGold++;
+            TotalGold++;
         } 
+    }
+
+    public void BuyOnClick()
+    {
+        BuyGem();
+    }
+    public int BuyGem()
+    {
+        TotalGold -= gems.gemCost;
+        gems.totalGems++;
+        BuyGemMessage("You bought gem!");
+        return totalGold;
+
+    }
+
+    public static void BuyGemMessage(string message)
+    {
+        print(message);
     }
     
  
