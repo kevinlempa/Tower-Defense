@@ -10,8 +10,10 @@ public class EnemySpawner : MonoBehaviour {
     public float dropSpeed;
 
     public int dronesToSpawn, spidersToSpawn;
-
+    public int timeBetweenSpawns;
+    
     public GameObject dronePrefab, spiderPrefab;
+    public Vector3 spawnPoint;
 
     readonly Queue<GameObject> _drones = new Queue<GameObject>();
     readonly Queue<GameObject> _spiders = new Queue<GameObject>();
@@ -42,22 +44,31 @@ public class EnemySpawner : MonoBehaviour {
         StartCoroutine(Spawn(_drones, _spiders));
     }
 
+    bool _shouldWait;
     //TODO: ADD SPAWN CD
     IEnumerator Spawn(Queue<GameObject> dronesToSpawn, Queue<GameObject> spidersToSpawn) {
-        if (dronesToSpawn.Count > 0) {
-            Instantiate(dronesToSpawn.Dequeue());
-            yield return new WaitForSeconds(1f);
+        if (dronesToSpawn.Count > 0 && !_shouldWait) {
+            Instantiate(dronesToSpawn.Dequeue(), spawnPoint, Quaternion.identity);
+            StartCoroutine(Wait());
         }
-        else if (spidersToSpawn.Count > 0) {
-            Instantiate(spidersToSpawn.Dequeue());
-            yield return new WaitForSeconds(1f);
+        else if (spidersToSpawn.Count > 0 && !_shouldWait) {
+            Instantiate(spidersToSpawn.Dequeue(), spawnPoint, Quaternion.identity);
+            StartCoroutine(Wait());
         }
+        yield return null;
+    }
+
+    IEnumerator Wait() {
+        _shouldWait = true;
+        yield return new WaitForSeconds(timeBetweenSpawns);
+        _shouldWait = false;
     }
     
     void OnDrawGizmos() {
         Gizmos.color = Color.black;
         var position = transform.GetChild(0).transform.position;
         Gizmos.DrawLine(position, new Vector3(position.x, landHeight, position.z));
+        Gizmos.DrawWireCube(spawnPoint, new Vector3(1, 1, 1));
     }
 
     void SpawnPod() {
