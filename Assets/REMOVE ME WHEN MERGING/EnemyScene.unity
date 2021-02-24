@@ -363,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4745466686227617231, guid: 42973c2541da8b2449c2a6a7d25b1d53, type: 3}
       propertyPath: landHeight
-      value: -11.4
+      value: -10.75
       objectReference: {fileID: 0}
     - target: {fileID: 4745466686227617231, guid: 42973c2541da8b2449c2a6a7d25b1d53, type: 3}
       propertyPath: spawnPoint.x
@@ -493,11 +493,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {x: -0.38105315, y: -10.58, z: -1.273251}
-  - {x: 14.256898, y: -10.58, z: 0.18380156}
-  - {x: 15.071743, y: -10.58, z: 14.422152}
-  - {x: -13.497369, y: -10.58, z: 12.964079}
-  - {x: -11.953979, y: -10.58, z: -15.612092}
+  - {x: -0.78059596, y: -10.58, z: -1.7158264}
+  - {x: 9.601718, y: -10.58, z: 1.0081055}
+  - {x: 3.1269264, y: -10.58, z: -9.75014}
+  - {x: -2.7095346, y: -10.58, z: -7.431698}
 --- !u!4 &277486067197660979
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies.WaypointSystem;
 using UnityEngine;
 
 namespace Enemies.Spawner {
@@ -22,6 +23,8 @@ namespace Enemies.Spawner {
     
         void Awake() {
             _pod = transform.GetChild(0).gameObject;
+            
+            FindObjectOfType<Waypoints>().points[0] = spawnPoint;
         }
 
         void Start() {
@@ -32,6 +35,9 @@ namespace Enemies.Spawner {
             for (var s = 0; s < spidersToSpawn; s++) {
                 _spiders.Enqueue(spiderPrefab);
             }
+            
+            
+            
         }
 
         void Update()
