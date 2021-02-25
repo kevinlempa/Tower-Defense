@@ -35,9 +35,6 @@ namespace Enemies.Spawner {
             for (var s = 0; s < spidersToSpawn; s++) {
                 _spiders.Enqueue(spiderPrefab);
             }
-            
-            
-            
         }
 
         void Update()
@@ -53,13 +50,13 @@ namespace Enemies.Spawner {
         }
 
         bool _shouldWait;
-        IEnumerator Spawn(Queue<GameObject> dronesToSpawn, Queue<GameObject> spidersToSpawn) {
-            if (dronesToSpawn.Count > 0 && !_shouldWait) {
-                Instantiate(dronesToSpawn.Dequeue(), spawnPoint, Quaternion.identity);
+        IEnumerator Spawn(Queue<GameObject> dronesQueue, Queue<GameObject> spidersQueue) {
+            if (dronesQueue.Count > 0 && !_shouldWait) {
+                Instantiate(dronesQueue.Dequeue(), spawnPoint, Quaternion.identity);
                 StartCoroutine(Wait());
             }
-            else if (spidersToSpawn.Count > 0 && !_shouldWait) {
-                Instantiate(spidersToSpawn.Dequeue(), spawnPoint, Quaternion.identity);
+            else if (spidersQueue.Count > 0 && !_shouldWait) {
+                Instantiate(spidersQueue.Dequeue(), spawnPoint, Quaternion.identity);
                 StartCoroutine(Wait());
             }
             yield return null;
