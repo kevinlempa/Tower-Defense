@@ -6,9 +6,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TurretManager : MonoBehaviour {
+    public static TurretManager Instance { get; private set; }
     private Camera cam;
     [SerializeField] private TurretsSO activeTurretType;
     [SerializeField] private TurretTypes turretTypes;
+
+    private void Awake() {
+        Instance = this;
+    }
 
     private void Start() {
         cam = Camera.main;
@@ -23,7 +28,7 @@ public class TurretManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             Upgrade(ClickedOnTurret());
-            
+
             Debug.Log(ClickedOnTurret());
         }
     }
@@ -48,7 +53,7 @@ public class TurretManager : MonoBehaviour {
     private void Upgrade(GameObject turret) {
         if (turret == null) return;
         if (turret.gameObject.GetComponent<Turret>()) {
-            if (turret.GetComponent<Turret>().turretData.index+1 < turretTypes.turretTypeList.Count) {
+            if (turret.GetComponent<Turret>().turretData.index + 1 < turretTypes.turretTypeList.Count) {
                 var upgrade = turretTypes.turretTypeList[turret.GetComponent<Turret>().turretData.index + 1];
                 var position = turret.transform.position;
                 Destroy(turret);
@@ -56,5 +61,9 @@ public class TurretManager : MonoBehaviour {
                 instance.GetComponent<Turret>().Setup(upgrade);
             }
         }
+    }
+
+    public void SetActiveType(TurretsSO turretType) {
+        activeTurretType = turretType;
     }
 }
