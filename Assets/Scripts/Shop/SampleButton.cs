@@ -10,6 +10,9 @@ public class SampleButton : MonoBehaviour
     public Text nameLabel;
     public Text priceLabel;
     public Image iconImage;
+
+    private Item item;
+    private ShopScrollList scrolllist;
     void Start()
     {
         
@@ -21,9 +24,14 @@ public class SampleButton : MonoBehaviour
         
     }
 
-    public void Setup()
+    public void Setup(Item currentItem, ShopScrollList currentScrollList)
     {
-        
+        item = currentItem;
+        nameLabel.text = item.itemName;
+        priceLabel.text = item.price.ToString();
+        iconImage.sprite = item.icon;
+
+        scrolllist = currentScrollList;
     }
     
 }
