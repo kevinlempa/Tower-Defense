@@ -20,13 +20,7 @@ public class TurretManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject()) {
-            var instance = Instantiate(activeTurretType.prefab, GetMouseWorldPosition(), Quaternion.identity);
-            instance.GetComponent<Turret>().Setup(activeTurretType);
-            Debug.Log(GetMouseWorldPosition());
-        }
-
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(1)) {
             Upgrade(ClickedOnTurret());
 
             Debug.Log(ClickedOnTurret());
