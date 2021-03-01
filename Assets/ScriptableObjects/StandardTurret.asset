@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45084d5a94eb90e47a3111c3c17e5cb1, type: 3}
   m_Name: StandardTurret
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1000012174300454, guid: 8a4fca54c9faa3449bcff12193992420, type: 3}
+  prefab: {fileID: 1557620682148740517, guid: 91237c9aa831f694882639061ddb96e5, type: 3}
   index: 0
   cost: 1
   attackSpeed: 1
