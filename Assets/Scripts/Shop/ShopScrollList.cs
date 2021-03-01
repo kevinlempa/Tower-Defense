@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Item
 {
     public string itemName;
     public Sprite icon;
-    public float price = 1f;
+    public int price = 1;
 }
 public class ShopScrollList : MonoBehaviour
 {
@@ -18,17 +19,27 @@ public class ShopScrollList : MonoBehaviour
     public Transform contentPanel;
     public ShopScrollList otherShop;
     public Text myGoldDisplay;
+    public Text shopGoldDisplay;
     public ObjectPoolScript buttonObjectPool;
-    public float gold = 20f; //OUR GOLD
+    //public float gold = 20f; //OUR GOLD
+
+    public Gold gold;
+    public ShopKeeperGold shopgold;
     
     void Start()
     {
         RefreshDisplay();
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void RefreshDisplay()
     {
-        myGoldDisplay.text = "Gold: " + gold.ToString();
+        otherShop.myGoldDisplay.text = "Gold: " + gold.TotalGold.ToString();
+        shopGoldDisplay.text = "Gold: " + shopgold.ShopGold.ToString();
         RemoveButton();
         AddButtons();
         
@@ -59,10 +70,14 @@ public class ShopScrollList : MonoBehaviour
 
     public void TryTransferItemTooOtherShop(Item item) //OUR GOLD SET
     {
-        if (otherShop.gold >= item.price)
+        
+        if (gold.TotalGold >= item.price)
         {
-            gold += item.price;
-            otherShop.gold -= item.price;
+            
+            gold.TotalGold -= item.price;
+            shopgold.ShopGold += item.price;
+
+
             AddItem(item, otherShop);
             RemoveItem(item, this);
             

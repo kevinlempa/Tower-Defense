@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Gold : MonoBehaviour
 {
     private int totalGold;
+    private int shopGold = 500;
     private float timeSeconds = 1;
     public Gems gems;
     
@@ -20,6 +21,7 @@ public class Gold : MonoBehaviour
         get => totalGold; 
         set => totalGold = value;
     }
+    
     IEnumerator PassiveIncome()
     {
         while (true)
