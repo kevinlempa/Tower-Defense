@@ -12,10 +12,10 @@ public class SampleButton : MonoBehaviour
     public Image iconImage;
 
     private Item item;
-    private ShopScrollList scrolllist;
+    private ShopScrollList scrollList;
     void Start()
     {
-        
+        button.onClick.AddListener(HandleClick);
     }
 
     // Update is called once per frame
@@ -31,7 +31,11 @@ public class SampleButton : MonoBehaviour
         priceLabel.text = item.price.ToString();
         iconImage.sprite = item.icon;
 
-        scrolllist = currentScrollList;
+        scrollList = currentScrollList;
     }
-    
+
+    public void HandleClick()
+    {
+        scrollList.TryTransferItemTooOtherShop(item);
+    }
 }

@@ -19,7 +19,7 @@ public class ShopScrollList : MonoBehaviour
     public ShopScrollList otherShop;
     public Text myGoldDisplay;
     public ObjectPoolScript buttonObjectPool;
-    public float gold = 20f;
+    public float gold = 20f; //OUR GOLD
     
     void Start()
     {
@@ -28,7 +28,10 @@ public class ShopScrollList : MonoBehaviour
 
     public void RefreshDisplay()
     {
+        myGoldDisplay.text = "Gold: " + gold.ToString();
+        RemoveButton();
         AddButtons();
+        
     }
 
     private void AddButtons()
@@ -43,4 +46,47 @@ public class ShopScrollList : MonoBehaviour
             sampleButton.Setup(item, this);
         }
     }
+
+    private void RemoveButton()
+    {
+        while (contentPanel.childCount > 0)
+        {
+            GameObject toRemove = transform.GetChild(0).gameObject;
+            buttonObjectPool.ReturnObject(toRemove);
+        }
+    }
+    
+
+    public void TryTransferItemTooOtherShop(Item item) //OUR GOLD SET
+    {
+        if (otherShop.gold >= item.price)
+        {
+            gold += item.price;
+            otherShop.gold -= item.price;
+            AddItem(item, otherShop);
+            RemoveItem(item, this);
+            
+            RefreshDisplay();
+            otherShop.RefreshDisplay();
+        }
+            
+    }
+        
+
+    private void AddItem(Item itemToAdd, ShopScrollList shopList)
+    {
+        shopList.itemList.Add(itemToAdd);
+    }
+
+    private void RemoveItem(Item itemToRemove, ShopScrollList shopList)
+    {
+        for (int i = shopList.itemList.Count - 1; i >= 0; i--)
+        {
+            if (shopList.itemList[i] == itemToRemove)
+                shopList.itemList.RemoveAt(i);
+        }
+        
+    }
+    
+    
 }

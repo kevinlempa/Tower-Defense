@@ -39,7 +39,7 @@ public class ObjectPoolScript : MonoBehaviour
         {
             if (pooledObject != null && pooledObject.pool == this)
             {
-                toReturn.transform.SetParent(transform);
+                toReturn.transform.SetParent(transform, false);
                 toReturn.SetActive(false);
 
                 inactiveInstances.Push(toReturn);
