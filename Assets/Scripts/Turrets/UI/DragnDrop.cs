@@ -42,8 +42,9 @@ namespace Turrets.UI {
             //Spawns turret
             var t = Instantiate(turretToSpawn);
             t.GetComponent<Collider>().enabled = false;
+            t.GetComponent<FieldOfView>().enabled = false;
             _instance = t;
-            
+
             #region Alpha
         
             //We need to fetch the original color on the turret to assign alpha later and keep same color.

@@ -2,34 +2,36 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 
-public class FieldOfView : MonoBehaviour {
-
+public class FieldOfView : MonoBehaviour{
     public float viewRadius;
     [Range(0,360)]
     public float viewAngle;
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
-    Transform ClosestTarget;
+    [HideInInspector] 
+    public Transform ClosestTarget;
     private float closestDistance = 1000f;
-    public Transform partToRotate;
-    public float turnSpeed;
-
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
+    
+    public Transform partToRotate;
+    public float turnSpeed;
+    public float attackSpeed = 0.2f;
 
     void Start() {
         StartCoroutine ("FindTargetsWithDelay", .2f);
+        StartCoroutine(ShootWithDelay(attackSpeed));
     }
 
     private void Update(){
-        if(ClosestTarget != null){
-            Vector3 dirToTarget = (ClosestTarget.position - transform.position).normalized;
-            var lookAt = Quaternion.LookRotation(dirToTarget);
-            var rotation = Quaternion.Lerp(partToRotate.rotation, lookAt, Time.deltaTime * turnSpeed).eulerAngles;
-            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-        }
+        if (ClosestTarget == null) return;
+        Vector3 dirToTarget = (ClosestTarget.position - transform.position).normalized;
+        var lookAt = Quaternion.LookRotation(dirToTarget);
+        var rotation = Quaternion.Lerp(partToRotate.rotation, lookAt, Time.deltaTime * turnSpeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     IEnumerator FindTargetsWithDelay(float delay) {
@@ -37,6 +39,13 @@ public class FieldOfView : MonoBehaviour {
             yield return new WaitForSeconds (delay);
             FindVisibleTargets ();
             FindClosestTarget();
+        }
+    }
+
+    IEnumerator ShootWithDelay(float shootingDelay){
+        while (true){
+            yield return new WaitForSeconds(shootingDelay);
+            ShootTarget();
         }
     }
 
@@ -66,6 +75,11 @@ public class FieldOfView : MonoBehaviour {
                 ClosestTarget = target;
             }
         }
+    }
+    
+    void ShootTarget(){
+        if (ClosestTarget == null) return;
+        ClosestTarget.GetComponent<Enemy>().TakeDamage(10);
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {

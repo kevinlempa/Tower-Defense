@@ -6,7 +6,7 @@ public class FieldOfViewEditor : UnityEditor.Editor {
 
     void OnSceneGUI() {
         FieldOfView fov = (FieldOfView)target;
-        Handles.color = Color.white;
+        Handles.color = Color.green;
         Handles.DrawWireArc (fov.transform.position, Vector3.up, Vector3.forward, 360, fov.viewRadius);
         Vector3 viewAngleA = fov.DirFromAngle (-fov.viewAngle / 2, false);
         Vector3 viewAngleB = fov.DirFromAngle (fov.viewAngle / 2, false);
