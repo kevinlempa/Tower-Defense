@@ -23,6 +23,8 @@ public class ShopScrollList : MonoBehaviour
     public ObjectPoolScript buttonObjectPool;
     //public float gold = 20f; //OUR GOLD
 
+    public bool isInventory;
+
     public Gold gold;
     public ShopKeeperGold shopgold;
     
@@ -73,10 +75,21 @@ public class ShopScrollList : MonoBehaviour
         
         if (gold.TotalGold >= item.price)
         {
+            if (isInventory)
+            {
+                gold.TotalGold += item.price;
+                shopgold.ShopGold -= item.price;
+            }
+            else 
+            {   
+                gold.TotalGold -= item.price;
+                shopgold.ShopGold += item.price;
+            }
+                
             
-            gold.TotalGold -= item.price;
-            shopgold.ShopGold += item.price;
-
+            
+            
+        
 
             AddItem(item, otherShop);
             RemoveItem(item, this);

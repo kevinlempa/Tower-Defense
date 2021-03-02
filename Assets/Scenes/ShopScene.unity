@@ -354,6 +354,7 @@ MonoBehaviour:
   myGoldDisplay: {fileID: 1965632906}
   shopGoldDisplay: {fileID: 1965632906}
   buttonObjectPool: {fileID: 1495095134}
+  isInventory: 0
   gold: {fileID: 1372126368}
   shopgold: {fileID: 2128522914}
 --- !u!1 &153776804
@@ -1002,8 +1003,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 153776806}
   m_HandleRect: {fileID: 153776805}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: -0.00003842185
+  m_Size: 0.99331385
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2341,6 +2342,7 @@ MonoBehaviour:
   myGoldDisplay: {fileID: 2141373024}
   shopGoldDisplay: {fileID: 1965632906}
   buttonObjectPool: {fileID: 1495095134}
+  isInventory: 1
   gold: {fileID: 1372126368}
   shopgold: {fileID: 2128522914}
 --- !u!114 &1930842502
