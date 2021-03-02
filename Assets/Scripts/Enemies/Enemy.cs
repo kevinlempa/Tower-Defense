@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Enemies.WaypointSystem;
 using UnityEngine;
@@ -40,6 +41,13 @@ namespace Enemies {
 
         void Update() {
             Death();
+        }
+
+        void OnTriggerEnter(Collider other) {
+            if (other.gameObject.name == "Heart") {
+                Attack();
+                other.GetComponent<HealthBar>().TakeDamage(10f);
+            }
         }
 
         public void TakeDamage(float damage) {

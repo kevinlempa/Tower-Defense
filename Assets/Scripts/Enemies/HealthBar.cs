@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Enemies
@@ -15,8 +16,16 @@ namespace Enemies
         }
 
         public void TakeDamage(float damage) {
-            GetComponent<Enemy>().health -= damage;
-            healthBar.fillAmount = GetComponent<Enemy>().health / _maxHealth;
+            if (GetComponent<Enemy>() != null) {
+                GetComponent<Enemy>().health -= damage;
+                healthBar.fillAmount = GetComponent<Enemy>().health / _maxHealth;
+            }
+            else {
+                healthBar.fillAmount -= 20f / 100f;
+                if (healthBar.fillAmount <= 0.02f) {
+                    SceneManager.LoadScene(1);
+                }
+            }
         }
 
     }
