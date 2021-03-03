@@ -283,7 +283,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 355.34103, y: 0}
   m_SizeDelta: {x: 415.78, y: 695.15}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &89464465
@@ -326,29 +326,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
+    icon: {fileID: 21300000, guid: 1186588d0c941aa4792e6eb24227d57e, type: 3}
+    price: 50
   - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
+    icon: {fileID: 21300000, guid: 1186588d0c941aa4792e6eb24227d57e, type: 3}
+    price: 50
   - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 10
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 15
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 20
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
+    icon: {fileID: 21300000, guid: 1186588d0c941aa4792e6eb24227d57e, type: 3}
+    price: 50
   contentPanel: {fileID: 89464464}
   otherShop: {fileID: 1930842501}
   myGoldDisplay: {fileID: 1965632906}
@@ -480,7 +465,7 @@ GameObject:
   - component: {fileID: 191902271}
   - component: {fileID: 191902270}
   m_Layer: 5
-  m_Name: ScrollShopA
+  m_Name: ScrollShopNPCshop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,8 +988,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 153776806}
   m_HandleRect: {fileID: 153776805}
   m_Direction: 0
-  m_Value: -0.00003842185
-  m_Size: 0.99331385
+  m_Value: -127.82343
+  m_Size: 0.9933139
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1854,7 +1839,7 @@ GameObject:
   - component: {fileID: 1625334798}
   - component: {fileID: 1625334797}
   m_Layer: 5
-  m_Name: ScrollShopB
+  m_Name: ScrollShopInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2327,16 +2312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28333e065cb455f47b9d1b7248dde3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
-  - itemName: Gem
-    icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    price: 1
+  itemList: []
   contentPanel: {fileID: 1930842500}
   otherShop: {fileID: 89464467}
   myGoldDisplay: {fileID: 2141373024}
