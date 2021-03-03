@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Experimental.TerrainAPI;
 
 namespace Turrets.UI {
     public class DragnDrop : MonoBehaviour {
@@ -10,7 +11,11 @@ namespace Turrets.UI {
         bool _shouldDrag;
         
         RaycastHit hit;
-    
+
+        void Start() {
+            Input.simulateMouseWithTouches = true;
+        }
+
         void Update() {
             StartDragging();
         }
