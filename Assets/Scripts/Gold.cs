@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Gold : MonoBehaviour
 {
-    private int totalGold;
+    private int totalGold = 500;
+    
     private float timeSeconds = 1;
     public Gems gems;
     
@@ -20,6 +21,7 @@ public class Gold : MonoBehaviour
         get => totalGold; 
         set => totalGold = value;
     }
+    
     IEnumerator PassiveIncome()
     {
         while (true)
@@ -50,7 +52,7 @@ public class Gold : MonoBehaviour
  
     void Start()
     {
-        StartCoroutine(PassiveIncome());
+        //StartCoroutine(PassiveIncome());
     }
     void Update()
     {
