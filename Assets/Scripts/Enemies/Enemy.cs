@@ -5,10 +5,15 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace Enemies {
+    public delegate void deathEvent();
+    
     public class Enemy : MonoBehaviour {
 
         public int  maxMovementSpeed, accelerationSpeed, attackDamage;
         public float health;
+
+        public event deathEvent death;
+
         [HideInInspector] public float maxHealth;
 
         Rigidbody _rb;
@@ -25,6 +30,10 @@ namespace Enemies {
 
         ParticleSystem _particle;
         static readonly int DeathTrigger = Animator.StringToHash("Death");
+
+        void Start() {
+            death += FindObjectOfType<KillCounter>().Killed;
+        }
 
         void Awake() {
             _healthBar = GetComponent<HealthBar>();
@@ -69,6 +78,7 @@ namespace Enemies {
             }
 
             if (!_shouldWait) {
+                death?.Invoke();
                 Destroy(gameObject);
             }
         }
