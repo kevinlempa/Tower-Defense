@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace Enemies {
-    public class Enemy : MonoBehaviour {
+    public delegate void deathEvent();
 
-        public int  maxMovementSpeed, accelerationSpeed, attackDamage;
-        public float health;
+    public class Enemy : MonoBehaviour {
+        public int maxMovementSpeed, accelerationSpeed, attackDamage;
+        private float health = 100f;
+
+
         [HideInInspector] public float maxHealth;
 
         Rigidbody _rb;
@@ -17,14 +20,25 @@ namespace Enemies {
         HealthBar _healthBar;
 
         Animator _animator;
-        
+
         bool _startedAttack;
-    
+
         NavMeshAgent _agent;
         Pathfinder _pathfinder;
 
         ParticleSystem _particle;
         static readonly int DeathTrigger = Animator.StringToHash("Death");
+
+        public float Health {
+            get => health;
+            set {
+                health = value;
+                if (health <= 0) {
+                    Death();
+                }
+            }
+        }
+
 
         void Awake() {
             _healthBar = GetComponent<HealthBar>();
@@ -39,10 +53,6 @@ namespace Enemies {
             _rb = GetComponent<Rigidbody>();
         }
 
-        void Update() {
-            Death();
-        }
-
         void OnTriggerEnter(Collider other) {
             if (other.gameObject.name == "Heart") {
                 Attack();
@@ -53,7 +63,7 @@ namespace Enemies {
         public void TakeDamage(float damage) {
             _healthBar.TakeDamage(damage);
         }
-        
+
         bool _shouldWait;
 
         void Death() {
@@ -70,9 +80,10 @@ namespace Enemies {
 
             if (!_shouldWait) {
                 Destroy(gameObject);
+                Publisher.i.CallOnKill();
             }
         }
-        
+
         IEnumerator Wait() {
             _shouldWait = true;
             yield return new WaitForSeconds(1.5f);
@@ -80,7 +91,6 @@ namespace Enemies {
         }
 
         public void Attack() {
-
             if (_particle.time >= 1) {
                 Destroy(gameObject);
             }
@@ -88,10 +98,11 @@ namespace Enemies {
             if (_startedAttack) return;
             _startedAttack = true;
             _particle.Play();
-                
+
             for (int c = 0; c < gameObject.transform.childCount; c++) {
                 Destroy(gameObject.transform.GetChild(c).gameObject);
             }
+
             Destroy(_pathfinder);
             Destroy(_agent);
         }
