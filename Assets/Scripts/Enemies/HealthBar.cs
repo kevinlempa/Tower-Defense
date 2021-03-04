@@ -17,8 +17,8 @@ namespace Enemies
 
         public void TakeDamage(float damage) {
             if (GetComponent<Enemy>() != null) {
-                GetComponent<Enemy>().health -= damage;
-                healthBar.fillAmount = GetComponent<Enemy>().health / _maxHealth;
+                GetComponent<Enemy>().Health -= damage;
+                healthBar.fillAmount = GetComponent<Enemy>().Health / _maxHealth;
             }
             else {
                 healthBar.fillAmount -= 20f / 100f;

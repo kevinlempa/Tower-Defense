@@ -10,9 +10,10 @@ public class KillCounter : MonoBehaviour {
     void Start() {
         killCounterText = GetComponent<Text>();
         killCounterText.text = $"Kills: {PlayerPrefs.GetInt("Kills")}";
+        Publisher.i.onKill += UpdateKillCounter;
     }
 
-    public void Killed() {
+    private void UpdateKillCounter() {
         _killCount += 1;
         killCounterText.text = $"Kills: {_killCount}";
         PlayerPrefs.SetInt("Kills", _killCount);
