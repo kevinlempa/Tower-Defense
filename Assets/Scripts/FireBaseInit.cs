@@ -1,6 +1,7 @@
 using Firebase;
 using Firebase.Analytics;
 using Firebase.Extensions;
+using Firebase.Installations;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -16,6 +17,7 @@ public class FireBaseInit : MonoBehaviour {
 
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
             StartCoroutine(auth.SigninAnonymously());
+            StartCoroutine(auth.CreateInstallationID());
         });
     }
 
