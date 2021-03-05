@@ -1,20 +1,20 @@
 using System;
 using System.Threading.Tasks;
 using Firebase.Database;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Saving {
     public class SaveManager : MonoBehaviour {
-        private const string PLAYER_KEY = "PLAYER_KEY";
+        private string PLAYER_KEY {
+            get => FindObjectOfType<FireBaseAuthentication>().GetUserId();
+        }
         private FirebaseDatabase _database;
 
         private void Start() {
-            _database = FirebaseDatabase.DefaultInstance;
+            _database = FirebaseDatabase.GetInstance("https://tower-defense-c0bbd-default-rtdb.europe-west1.firebasedatabase.app/");
         }
 
         public void SaveKillCount(KillCountData data) {
-            PlayerPrefs.SetString(PLAYER_KEY, JsonUtility.ToJson(data));
             _database.GetReference(PLAYER_KEY).SetRawJsonValueAsync(JsonUtility.ToJson(data));
         }
 
@@ -32,6 +32,10 @@ namespace Saving {
         public async Task<bool> SaveExists() {
             var dataSnapshot = await _database.GetReference(PLAYER_KEY).GetValueAsync();
             return dataSnapshot.Exists;
+        }
+
+        public void EraseSave() {
+            _database.GetReference(PLAYER_KEY).RemoveValueAsync();
         }
     }
 }

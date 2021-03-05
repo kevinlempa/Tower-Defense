@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Saving;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,13 +12,23 @@ public class KillCounter : MonoBehaviour {
     
 
         Text killCounterText;
+        
 
-    void Start() {
-        saveManager = FindObjectOfType<SaveManager>();
+        IEnumerator  Start() {
+            saveManager = FindObjectOfType<SaveManager>();
         killCounterText = GetComponent<Text>();
-        killCounterText.text = $"Kills: {PlayerPrefs.GetInt("Kills")}";
-        _data.KillCount = PlayerPrefs.GetInt("Kills");
+        killCounterText.text = $"Kills: ";
+     
+        yield return new WaitForSeconds(0.1f);
         Publisher.i.onKill += UpdateKillCounter;
+        var dataTask = saveManager.LoadKillCount();
+        yield return new WaitUntil(()=> dataTask.IsCompleted);
+        var data = dataTask.Result;
+        if (data.HasValue) {
+            _data.KillCount = data.Value.KillCount;
+            killCounterText.text = $"Kills: {_killCount}";
+        }
+
     }
 
     private void UpdateKillCounter() {
