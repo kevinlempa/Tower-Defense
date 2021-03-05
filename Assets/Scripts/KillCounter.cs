@@ -19,7 +19,7 @@ public class KillCounter : MonoBehaviour {
         killCounterText = GetComponent<Text>();
         killCounterText.text = $"Kills: ";
      
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         Publisher.i.onKill += UpdateKillCounter;
         var dataTask = saveManager.LoadKillCount();
         yield return new WaitUntil(()=> dataTask.IsCompleted);

@@ -1,7 +1,5 @@
-using System;
 using Firebase;
 using Firebase.Analytics;
-using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
@@ -11,8 +9,8 @@ public class FireBaseInit : MonoBehaviour {
 
     void Awake() {
         auth = GetComponent<FireBaseAuthentication>();
-        
-       
+
+
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
 
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
